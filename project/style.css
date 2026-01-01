@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2fbff;
+}
+
+/* Logo & heading */
+.logo {
+  text-align: center;
+  color: #0a4d68;
+  margin-top: 20px;
+}
+
+.tagline {
+  text-align: center;
+  color: #088395;
+  margin-bottom: 20px;
+}
+
+/* Main box */
+.container {
+  width: 85%;
+  margin: auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Section titles */
+.section-title {
+  color: #0a4d68;
+  margin-top: 20px;
+}
+
+/* Normal text */
+.text {
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Images */
+.image {
+  width: 220px;
+  display: block;
+  margin: 15px 0;
+  border-radius: 10px;
+}
+
+/* Features list */
+.features {
+  list-style: "💧 ";
+  padding-left: 20px;
+}
+
+.features li {
+  margin: 8px 0;
+}
+
+/* Button */
+.try-btn {
+  display: block;
+  margin: 25px auto;
+  padding: 12px 25px;
+  font-size: 16px;
+  background: #0a4d68;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.try-btn:hover {
+  background: #088395;
+}

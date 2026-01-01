@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hydra Care App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>💧 Hydra Care Reminder</h1>
+        <p>Enter reminder time (in minutes)</p>
+
+        <input type="number" id="time" placeholder="Eg: 30">
+        <br><br>
+        <button onclick="startReminder()">Start Reminder</button>
+    </div>
+
+    <script>
+
+        let totalWater = 0;
+
+        function startReminder() {
+            let time = document.getElementById("time").value;
+
+            if (time <= 0) {
+                alert("Please enter valid reminder time");
+                return;
+            }
+
+            alert("Hydra Care Reminder Started 💧");
+
+            setInterval(() => {
+                document.getElementById("waterSound").play();
+                alert("⏰ It's time to drink water! 💧 Stay Hydrated");
+                audio.play();
+            }, time * 60000);
+        }
+
+        function addWater() {
+            let goal = document.getElementById("goal").value;
+            let name = document.getElementById("username").value;
+
+            if (goal <= 0 || name === "") {
+                alert("Please enter name and daily goal first");
+                return;
+            }
+
+            totalWater += 0.25;
+            let percent = Math.min((totalWater / goal) * 100, 100);
+
+            document.getElementById("status").innerText =
+                name + ", you have completed " + percent.toFixed(0) +
+                "% of your daily water goal (" + totalWater + " L)";
+        }
+    </script>
+
+</body>
+
+</html>
