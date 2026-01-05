@@ -1,62 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Hydra Care App</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #dff6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        input {
+            padding: 8px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #00a8ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #0097e6;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>💧 Hydra Care Reminder</h1>
-        <p>Enter reminder time (in minutes)</p>
+<div class="container">
+    <h1>💧 Hydra Care Reminder</h1>
+    <p>Enter reminder time (in minutes)</p>
 
-        <input type="number" id="time" placeholder="Eg: 30">
-        <br><br>
-        <button onclick="startReminder()">Start Reminder</button>
-    </div>
+    <input type="number" id="time" placeholder="Eg: 30">
+    <br><br>
+    <button onclick="startReminder()">Start Reminder</button>
+    <!-- <button onclick="document.getElementById('waterSound').play()">Test Sound</button> -->
+</div>
 
-    <script>
+<!-- AUDIO (optional) -->
+<audio id="waterSound">
+    <source src="thailand-eas-alarm-2006-266492.mp3" type="audio/mpeg">
+</audio>
 
-        let totalWater = 0;
+<script>
+    let reminderInterval;
 
-        function startReminder() {
-            let time = document.getElementById("time").value;
+    function startReminder() {
+        let time = document.getElementById("time").value;
 
-            if (time <= 0) {
-                alert("Please enter valid reminder time");
-                return;
-            }
-
-            alert("Hydra Care Reminder Started 💧");
-
-            setInterval(() => {
-                document.getElementById("waterSound").play();
-                alert("⏰ It's time to drink water! 💧 Stay Hydrated");
-                audio.play();
-            }, time * 60000);
+        if (time <= 0 || time === "") {
+            alert("Please enter a valid reminder time");
+            return;
         }
 
-        function addWater() {
-            let goal = document.getElementById("goal").value;
-            let name = document.getElementById("username").value;
+        alert("Hydra Care Reminder Started 💧");
 
-            if (goal <= 0 || name === "") {
-                alert("Please enter name and daily goal first");
-                return;
+        clearInterval(reminderInterval);
+
+        reminderInterval = setInterval(function () {
+            let sound = document.getElementById("waterSound");
+            
+            if (sound) {
+                
+                sound.play();
+            
+                
+                setTimeout(function() {
+                    alert("⏰ It's time to drink water! 💧 Stay Hydrated");
+                    sound.pause();
+                }, 500);
             }
 
-            totalWater += 0.25;
-            let percent = Math.min((totalWater / goal) * 100, 100);
-
-            document.getElementById("status").innerText =
-                name + ", you have completed " + percent.toFixed(0) +
-                "% of your daily water goal (" + totalWater + " L)";
-        }
-    </script>
+        }, time * 60000); 
+    }
+</script>
 
 </body>
-
 </html>
